@@ -67,7 +67,7 @@ class pyGPO:
 
         # Concatenate domain and username
         username = f'{self.args.domain}\{self.args.username}'
-        
+
         # Create an LDAP connection and authenticate using NTLM
         try:
             conn = Connection(server, 
@@ -172,6 +172,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Python script for managing GPO remotely',
         formatter_class=argparse.RawDescriptionHelpFormatter,
+        add_help=False,
         epilog=textwrap.dedent("""Examples:
 
 Get linked objects from GPO  pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -p 'John123' -g 'gpo_dn'
@@ -180,7 +181,8 @@ Unlink GPO to object         pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -
             """ ))
 
     # Define arguments for the parser
-    parser.add_argument('-dc', '--domaincontroller', help='Domain controller IP')
+    parser.add_argument('-h', '--help', action='store_true', help='Show this help message and exit.')
+    parser.add_argument('-dc', '--domaincontroller', help='Specify domain controller IP')
     parser.add_argument('-u', '--username', help='Specify username')
     parser.add_argument('-p', '--password', help='Specify password or LM:NTLM hash')
     parser.add_argument('-d', '--domain', help='Specify the domain')
@@ -196,13 +198,29 @@ pyGPO.py by Incendium. Please use responsibly.
     """
 
     print(intro)
+    help = """
+Options:
+    -h  --help              Show this screen.
+    -dc --domaincontroller  Specify domain controller IP
+    -u  --username          Specify username
+    -p  --password          Specify password or NT:NTLM hash
+    -d  --domain            Specify domain
+    -g  --gpodn             Specify the GPO DN
+    -l  --link              Specify the target object to link
+    -ul --unlink            Specify the target object to unlink
+"""
+
+
+    if args.help:
+        print(help)
+        exit()
 
     # If there is less than 2 arguments, we will print out the help menu.
     if len(sys.argv[1:]) < 2:
         print("pyGPO.py [-h] [-u --user] [-p --password] [-d --domain] [-g --gpodn] [-l --link] [-ul --unlink] [-dc --domaincontroller]")
-        print("")
-        print(parser.epilog)
+        print(help)
         sys.exit(0)
+
 
     # Parse arguments to pyGPO class.
     pygpo = pyGPO(args)
