@@ -207,7 +207,7 @@ Unlink GPO to object         pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -
             """ ))
 
     # Define arguments for the parser
-    parser.add_argument('-h', '--help', action='store_true', help='Show this help message and exit.')
+    parser.add_argument('-h', '--help', action='store_true', help='Show this help message and exit')
     parser.add_argument('-dc', '--domaincontroller', help='Specify domain controller IP')
     parser.add_argument('-u', '--username', help='Specify username')
     parser.add_argument('-p', '--password', help='Specify password or LM:NTLM hash')
