@@ -4,7 +4,7 @@ Python class for managing Group Policy Object (GPO) on Active Directory (AD) rem
 
 ## Description
 
-pyGPO used LDAP3 to authenticate to a domain controller remotely. After successfully authenticating to the domain controller, a user can get, link and unlink an GPO.
+pyGPO uses LDAP3 to authenticate to a domain controller remotely. After successfully authenticating to the domain controller, a user can get, link and unlink an GPO.
 
 ## Features
 
