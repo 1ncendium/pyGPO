@@ -1,3 +1,29 @@
+#!/usr/bin/python3
+# pyGPO.py - Python class for managing Group Policy Object (GPO) on Active Directory (AD) remotely.
+# Copyright (C) 2023 Incendium. 
+# https://www.linkedin.com/in/remco-vandermeer/
+#
+# This tool may be used for legal purposes only. Users take full responsibility
+# for any actions performed using this tool. The author accepts no liability
+# for damage caused by this tool. If these terms are not acceptable to you, then
+# you are not permitted to use this tool.
+#
+# In all other respects the GPL version 2 applies:
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
 from ldap3 import Server, Connection, NTLM, MODIFY_REPLACE, MODIFY_DELETE, SUBTREE
 from ldap3.core.exceptions import LDAPBindError
 import argparse
@@ -92,7 +118,7 @@ class pyGPO:
 
         # Get base DN from GPO arg
         if not self.args.gpodn:
-            print(f"{bcolors.FAIL}[!]{bcolors.ENDC} To link/enumerate GPO please set a valid gpo_dn use -h for help")
+            print(f"{bcolors.FAIL}[!]{bcolors.ENDC} To get GPO please set a valid gpo_dn use -h for help")
             exit()
         components = self.args.gpodn.split(',')
         if len(components) >= 2:
