@@ -208,6 +208,12 @@ Options:
     -g  --gpodn             Specify the GPO DN
     -l  --link              Specify the target object to link
     -ul --unlink            Specify the target object to unlink
+
+Examples:
+
+Get linked objects from GPO  pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -p 'John123' -g 'gpo_dn'
+Link GPO to object           pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -p 'John123' -g 'gpo_dn' -l 'target_dn'
+Unlink GPO to object         pyGPO.py -dc 10.1.10.1 -d powercorp.local -u john -p 'John123' -g 'gpo_dn' -ul 'target_dn'  
 """
 
 
